@@ -1,107 +1,78 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>第4回美勝英地区招待バレーボール大会</title>
-  <style>
-    body {
-      background: #fff8fc;
-      color: #333;
-      font-family: 'Rounded Mplus 1c', 'Segoe UI', 'Meiryo', sans-serif;
-      margin: 0;
-      padding: 0;
-    }
+body {
+  background: #1c1f26; /* ダークブルーグレー */
+  color: #e0e0e0; /* 明るめグレー */
+  font-family: 'Rounded Mplus 1c', 'Segoe UI', 'Meiryo', sans-serif;
+  margin: 0;
+  padding: 0;
+}
 
-    header {
-      background: #e89cae; /* ← 落ち着いたピンクに変更 */
-      color: #fff;
-      text-align: center;
-      padding: 2em 0 1.5em 0;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    }
+header {
+  background: #2b3a55; /* ネイビー系 */
+  color: #ffffff;
+  text-align: center;
+  padding: 2em 0 1.5em 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
 
-    header h1 {
+header h1 {
   font-size: 1.8em;
   margin: 0;
   letter-spacing: 0.05em;
   line-height: 1.4;
-  text-shadow: 1px 1px 2px #ffdee5;
+  text-shadow: 1px 1px 2px #111;
 }
 
+main {
+  padding: 2.5em 1.5em;
+  max-width: 560px;
+  margin: 0 auto;
+}
 
-    main {
-      padding: 2.5em 1.5em;
-      max-width: 560px;
-      margin: 0 auto;
-    }
+.section-title {
+  margin: 2.5em 0 1.2em 0;
+  color: #4da6ff; /* クールなブルー */
+  font-weight: bold;
+  font-size: 1.3em;
+  letter-spacing: 0.08em;
+}
 
-    .section-title {
-      margin: 2.5em 0 1.2em 0;
-      color: #ff69b4;
-      font-weight: bold;
-      font-size: 1.3em;
-      letter-spacing: 0.08em;
-    }
+.link-button {
+  display: block;
+  width: 100%;
+  margin: 0.8em 0;
+  padding: 1.1em 0;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: #fff;
+  background: #3b82f6; /* クールブルー */
+  border: none;
+  border-radius: 14px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.3s ease;
+}
 
-    .link-button {
-      display: block;
-      width: 100%;
-      margin: 0.8em 0;
-      padding: 1.1em 0;
-      font-size: 1.1em;
-      font-weight: bold;
-      color: #fff;
-      background: #ffa07a;
-      border: none;
-      border-radius: 14px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      text-decoration: none;
-      text-align: center;
-      transition: all 0.3s ease;
-    }
+.link-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
 
-    .link-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-    }
+.link-button.secondary {
+  background: #1e88e5; /* 青系の別色 */
+}
 
-    .link-button.secondary {
-      background: #f9a825;
-    }
+.link-button.alt {
+  background: #00acc1; /* クールなアクアブルー */
+}
 
-    .link-button.alt {
-      background: #64b5f6;
-    }
+.link-button.alt2 {
+  background: #8e24aa; /* 落ち着いたパープル */
+}
 
-    .link-button.alt2 {
-      background: #ba68c8;
-    }
-
-    footer {
-      text-align: center;
-      color: #aaa;
-      font-size: 0.9em;
-      padding: 2em 0 1em 0;
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>第4回美勝英地区招待<br>バレーボール大会</h1>
-  </header>
-  <main>
-    <div class="section-title">予選リーグ</div>
-    <a href="https://drive.google.com/file/d/11LaM6SAy18APYEtWZ2D4fs871unYHlmc/view?usp=sharing" class="link-button">結果</a>
-    <a href="https://drive.google.com/file/d/11L7wFHKpCNWxIXSIaI3BpktaIuzWu-LV/view?usp=sharing" class="link-button secondary">順位表</a>
-
-    <div class="section-title">決勝トーナメント</div>
-    <a href="https://drive.google.com/file/d/11W3nTkqfEjVW3aVWo9z6Iad2zrMLG4HQ/view?usp=sharing" class="link-button alt">Aクラストーナメント</a>
-    <a href="https://drive.google.com/file/d/11R-zg__jIMRMDn3lrqBWdNPE85B42vPI/view?usp=drive_link" class="link-button alt2">Bクラストーナメント</a>
-  </main>
-  <footer>
-    &copy; 2025 美勝英地区バレーボール大会事務局
-  </footer>
-</body>
-</html>
-
+footer {
+  text-align: center;
+  color: #888;
+  font-size: 0.9em;
+  padding: 2em 0 1em 0;
+}
