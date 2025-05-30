@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>バレーボール得点板</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      background: #f5f5f5;
+      padding: 2rem;
+    }
+    .scoreboard {
+      background: white;
+      border-radius: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      padding: 2rem;
+      max-width: 600px;
+      margin: auto;
+    }
+    .team-inputs {
+      margin-bottom: 1rem;
+    }
+    .team-inputs input {
+      font-size: 1rem;
+      padding: 0.3rem;
+      margin: 0.3rem;
+    }
+    .teams {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 1rem;
+    }
+    .team {
+      font-size: 1.5rem;
+    }
+    .scores {
+      display: flex;
+      justify-content: space-around;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+    .sets {
+      font-size: 1.2rem;
+      margin-bottom: 1rem;
+      background: #e0f7fa;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+    .sets h2 {
+      margin: 0 0 0.5rem;
+      font-size: 1.4rem;
+      color: #00796b;
+    }
+    .controls button {
+      font-size: 1rem;
+      margin: 0.5rem;
+      padding: 0.5rem 1rem;
+    }
+    .history {
+      margin-top: 1rem;
+      text-align: left;
+      background: #eaeaea;
+      padding: 1rem;
+      border-radius: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="scoreboard">
+    <div class="team-inputs">
+      <input type="text" id="inputTeamA" placeholder="チームAの名前" oninput="updateTeamName('A')">
+      <input type="text" id="inputTeamB" placeholder="チームBの名前" oninput="updateTeamName('B')">
+    </div>
+    <div class="teams">
+      <div class="team" id="teamAName">チームA</div>
+      <div class="team" id="teamBName">チームB</div>
+    </div>
+    <div class="scores">
+      <div id="scoreA">0</div>
+      <div id="scoreB">0</div>
+    </div>
+    <div class="sets">
+      <h2>セット情報</h2>
+      <div>現在のセット: <strong id="setCount">1</strong></div>
+      <div>
+        セットカウント: <strong id="labelA">チームA</strong> <span id="setsWonA">0</span> - <span id="setsWonB">0</span> <strong id="labelB">チームB</strong>
+      </div>
+    </div>
+    <div class="controls">
+      <button onclick="addScore('A')">A +1</button>
+      <button onclick="removeScore('A')">A -1</button>
+      <button onclick="addScore('B')">B +1</button>
+      <button onclick="removeScore('B')">B -1</button><br>
+      <button onclick="resetGame()">リセット</button>
+    </div>
+    <div class="history">
+      <strong>セット結果履歴:</strong>
+      <ul id="setHistory"></ul>
+    </div>
+  </div>
+
+  <script>
+    let scoreA = 0;
+    let scoreB = 0;
+    let setCount = 1;
+    let setsWonA = 0;
+    let setsWonB = 0;
+    const MATCH_POINT = 21;
+
+    function updateDisplay() {
+      document.getElementById('scoreA').textContent = scoreA;
+      document.getElementById('scoreB').textContent = scoreB;
+      document.getElementById('setCount').textContent = setCount;
+      document.getElementById('setsWonA').textContent = setsWonA;
+      document.getElementById('setsWonB').textContent = setsWonB;
+    }
+
+    function addScore(team) {
+      if (team === 'A') {
+        scoreA++;
+        if (scoreA >= MATCH_POINT) {
+          setsWonA++;
+          recordSetResult();
+          nextSet();
+        }
+      } else {
+        scoreB++;
+        if (scoreB >= MATCH_POINT) {
+          setsWonB++;
+          recordSetResult();
+          nextSet();
+        }
+      }
+      updateDisplay();
+    }
+
+    function removeScore(team) {
+      if (team === 'A' && scoreA > 0) scoreA--;
+      else if (team === 'B' && scoreB > 0) scoreB--;
+      updateDisplay();
+    }
+
+    function nextSet() {
+      scoreA = 0;
+      scoreB = 0;
+      setCount++;
+      updateDisplay();
+    }
+
+    function resetGame() {
+      scoreA = 0;
+      scoreB = 0;
+      setCount = 1;
+      setsWonA = 0;
+      setsWonB = 0;
+      document.getElementById('setHistory').innerHTML = '';
+      updateDisplay();
+    }
+
+    function updateTeamName(team) {
+      const name = document.getElementById(team === 'A' ? 'inputTeamA' : 'inputTeamB').value || (team === 'A' ? 'チームA' : 'チームB');
+      document.getElementById(team === 'A' ? 'teamAName' : 'teamBName').textContent = name;
+      document.getElementById(team === 'A' ? 'labelA' : 'labelB').textContent = name;
+    }
+
+    function recordSetResult() {
+      const teamAName = document.getElementById('teamAName').textContent;
+      const teamBName = document.getElementById('teamBName').textContent;
+      const historyItem = document.createElement('li');
+      historyItem.textContent = `${setCount}セット目: ${teamAName} ${scoreA} - ${scoreB} ${teamBName}`;
+      document.getElementById('setHistory').appendChild(historyItem);
+    }
+
+    updateDisplay();
+  </script>
+</body>
+</html>
