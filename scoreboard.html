@@ -230,7 +230,7 @@
     </div>
   </div>
 
-   <script>
+ <script>
     let scoreA = 0;
     let scoreB = 0;
     let setCount = 1;
@@ -298,7 +298,7 @@
       const teamAName = document.getElementById('teamAName').textContent;
       const teamBName = document.getElementById('teamBName').textContent;
       const historyItem = document.createElement('li');
-      historyItem.textContent = `\${setCount}セット目: \${teamAName} ${scoreA} - ${scoreB} ${teamBName}`;
+      historyItem.textContent = `${setCount}セット目: ${teamAName} ${scoreA} - ${scoreB} ${teamBName}`;
       document.getElementById('setHistory').appendChild(historyItem);
     }
 
