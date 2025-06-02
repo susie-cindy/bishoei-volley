@@ -37,7 +37,7 @@
       color: #00bcd4;
       font-weight: 700;
       margin-bottom: 1rem;
-      font-size: 1.6rem; /* フォントサイズを少し小さく */
+      font-size: 1.4rem; /* フォントサイズを小さく */
     }
 
     /* 入力欄 */
@@ -48,8 +48,8 @@
       margin-bottom: 1.5rem;
     }
     .team-inputs input {
-      padding: 0.8rem;
-      font-size: 1.2rem; /* フォントサイズを保持 */
+      padding: 0.5rem; /* パディングを小さく */
+      font-size: 1rem; /* フォントサイズを小さく */
       border: none;
       border-radius: 0.75rem;
       background: #333;
@@ -69,7 +69,7 @@
       margin-bottom: 2rem;
     }
     .team {
-      font-size: 1.8rem; /* フォントサイズを少し小さく */
+      font-size: 1.4rem; /* フォントサイズを小さく */
       font-weight: bold;
       color: #00bcd4;
       text-shadow: 0 0 4px #00bcd4;
@@ -80,7 +80,7 @@
     .scores {
       display: flex;
       justify-content: space-between; /* 横並びを維持 */
-      font-size: 3rem;
+      font-size: 2.5rem; /* フォントサイズを小さく */
       margin-bottom: 2rem;
     }
     #scoreA, #scoreB {
@@ -105,11 +105,11 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      font-size: 1.2rem;
+      font-size: 1rem; /* フォントサイズを小さく */
     }
     #setCount {
       font-weight: bold;
-      font-size: 1.4rem;
+      font-size: 1.2rem; /* フォントサイズを小さく */
     }
     .sets-count {
       display: flex;
@@ -119,7 +119,7 @@
     /* セットカウントラベル */
     #labelA, #labelB {
       font-weight: 700;
-      font-size: 1.2rem;
+      font-size: 1rem; /* フォントサイズを小さく */
     }
 
     /* コントロールボタン */
@@ -134,8 +134,8 @@
       background: linear-gradient(135deg, #00bcd4, #0097a7);
       border: none;
       border-radius: 0.75rem;
-      padding: 0.8rem 1.5rem;
-      font-size: 1rem;
+      padding: 0.5rem 1rem; /* パディングを小さく */
+      font-size: 0.9rem; /* フォントサイズを小さく */
       color: #fff;
       cursor: pointer;
       transition: all 0.3s;
@@ -153,13 +153,13 @@
       border-radius: 1rem;
       max-height: 200px;
       overflow-y: auto;
-      font-size: 1rem;
+      font-size: 0.9rem; /* フォントサイズを小さく */
     }
     .history strong {
       display: block;
       margin-bottom: 0.5rem;
       color: #00bcd4;
-      font-size: 1.2rem;
+      font-size: 1rem; /* フォントサイズを小さく */
     }
     #setHistory {
       list-style: none;
@@ -173,22 +173,11 @@
     /* レスポンシブ対応 */
     @media(max-width: 768px) {
       h2 {
-        font-size: 1.6rem; /* 中小通常のフォントサイズ */
+        font-size: 1.4rem; /* 中小通常のフォントサイズ */
       }
-      .scores {
-        flex-direction: column; /* スコアを縦に表示 */
+      .teams {
+        flex-direction: column; /* スマホ時に縦に変更 */
         align-items: center;
-        gap: 1rem;
-      }
-      .team {
-        font-size: 1.6rem; /* チーム名のフォントサイズダウン */
-      }
-      .controls button {
-        font-size: 0.9rem; /* ボタンフォントを小さく */
-        padding: 0.6rem 1rem; /* ボタンパディング変更 */
-      }
-      .history {
-        font-size: 0.9rem; /* 履歴のフォントサイズを小さく */
       }
     }
   </style>
