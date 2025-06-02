@@ -19,7 +19,7 @@
       align-items: center;
       min-height: 100vh;
       margin: 0;
-      padding: 2rem;
+      padding: 1rem;
     }
 
     /* メインのカード風コンテナ */
@@ -27,9 +27,8 @@
       background: #1e1e1e;
       border-radius: 1.5rem;
       box-shadow: 0 4px 20px rgba(0,0,0,0.5);
-      padding: 2rem 3rem;
-      max-width: 700px;
-      width: 100%;
+      padding: 2rem;
+      max-width: 90%; /* 幅を90%に変更 */
       box-sizing: border-box;
     }
 
@@ -38,20 +37,19 @@
       color: #00bcd4;
       font-weight: 700;
       margin-bottom: 1rem;
-      font-size: 1.8rem;
+      font-size: 1.6rem; /* フォントサイズを少し小さく */
     }
 
     /* 入力欄 */
     .team-inputs {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column; /* スマホ表示時に縦に並べる */
       gap: 1rem;
       margin-bottom: 1.5rem;
     }
     .team-inputs input {
-      flex: 1;
-      padding: 0.8rem 1rem;
-      font-size: 1.2rem;
+      padding: 0.8rem;
+      font-size: 1.2rem; /* フォントサイズを保持 */
       border: none;
       border-radius: 0.75rem;
       background: #333;
@@ -67,20 +65,21 @@
     /* チーム名 */
     .teams {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between; /* 横並びを維持 */
       margin-bottom: 2rem;
     }
     .team {
-      font-size: 2rem;
+      font-size: 1.8rem; /* フォントサイズを少し小さく */
       font-weight: bold;
       color: #00bcd4;
       text-shadow: 0 0 4px #00bcd4;
+      text-align: center; /* 中央揃えにする */
     }
 
     /* スコア表示 */
     .scores {
       display: flex;
-      justify-content: space-around;
+      justify-content: space-between; /* 横並びを維持 */
       font-size: 3rem;
       margin-bottom: 2rem;
     }
@@ -115,8 +114,8 @@
     .sets-count {
       display: flex;
       gap: 1rem;
-      font-family: 'Orbitron', sans-serif;
     }
+    
     /* セットカウントラベル */
     #labelA, #labelB {
       font-weight: 700;
@@ -172,17 +171,24 @@
     }
 
     /* レスポンシブ対応 */
-    @media(max-width: 768px){
-      .team-inputs {
-        flex-direction: column;
+    @media(max-width: 768px) {
+      h2 {
+        font-size: 1.6rem; /* 中小通常のフォントサイズ */
       }
       .scores {
-        flex-direction: column;
+        flex-direction: column; /* スコアを縦に表示 */
         align-items: center;
         gap: 1rem;
       }
       .team {
-        text-align: center;
+        font-size: 1.6rem; /* チーム名のフォントサイズダウン */
+      }
+      .controls button {
+        font-size: 0.9rem; /* ボタンフォントを小さく */
+        padding: 0.6rem 1rem; /* ボタンパディング変更 */
+      }
+      .history {
+        font-size: 0.9rem; /* 履歴のフォントサイズを小さく */
       }
     }
   </style>
@@ -225,7 +231,7 @@
       <button onclick="addScore('A')">A +1</button>
       <button onclick="removeScore('A')">A -1</button>
       <button onclick="addScore('B')">B +1</button>
-      <button onclick="removeScore('B')">B -1</button><br>
+      <button onclick="removeScore('B')">B -1</button>
       <button onclick="resetGame()">リセット</button>
     </div>
 
@@ -304,7 +310,7 @@
       const teamAName = document.getElementById('teamAName').textContent;
       const teamBName = document.getElementById('teamBName').textContent;
       const historyItem = document.createElement('li');
-      historyItem.textContent = `${setCount}セット目: ${teamAName} ${scoreA} - ${scoreB} ${teamBName}`;
+      historyItem.textContent = `\${setCount}セット目: \${teamAName} ${scoreA} - ${scoreB} ${teamBName}`;
       document.getElementById('setHistory').appendChild(historyItem);
     }
 
