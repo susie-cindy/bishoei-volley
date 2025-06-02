@@ -1,93 +1,226 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <title>バレーボール得点板</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- おしゃれなフォントを追加 -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+
   <style>
+    /* 全体の背景と基本フォント */
     body {
-      font-family: sans-serif;
-      text-align: center;
-      background: #f5f5f5;
+      font-family: 'Orbitron', sans-serif;
+      background: #121212;
+      color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
       padding: 2rem;
     }
+
+    /* メインのカード風コンテナ */
     .scoreboard {
-      background: white;
-      border-radius: 1rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      padding: 2rem;
-      max-width: 600px;
-      margin: auto;
+      background: #1e1e1e;
+      border-radius: 1.5rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+      padding: 2rem 3rem;
+      max-width: 700px;
+      width: 100%;
+      box-sizing: border-box;
     }
-    .team-inputs {
+
+    /* 見出しやテキスト */
+    h2 {
+      color: #00bcd4;
+      font-weight: 700;
       margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+
+    /* 入力欄 */
+    .team-inputs {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
     }
     .team-inputs input {
-      font-size: 1rem;
-      padding: 0.3rem;
-      margin: 0.3rem;
+      flex: 1;
+      padding: 0.8rem 1rem;
+      font-size: 1.2rem;
+      border: none;
+      border-radius: 0.75rem;
+      background: #333;
+      color: #f0f0f0;
+      transition: background 0.3s;
     }
+    .team-inputs input:focus {
+      outline: none;
+      background: #444;
+      box-shadow: 0 0 8px #00bcd4;
+    }
+
+    /* チーム名 */
     .teams {
       display: flex;
       justify-content: space-around;
-      margin-bottom: 1rem;
+      margin-bottom: 2rem;
     }
     .team {
-      font-size: 1.5rem;
+      font-size: 2rem;
+      font-weight: bold;
+      color: #00bcd4;
+      text-shadow: 0 0 4px #00bcd4;
     }
+
+    /* スコア表示 */
     .scores {
       display: flex;
       justify-content: space-around;
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
+      font-size: 3rem;
+      margin-bottom: 2rem;
     }
+    #scoreA, #scoreB {
+      padding: 1rem 2rem;
+      background: #2e2e2e;
+      border-radius: 1rem;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+    }
+
+    /* セット情報 */
     .sets {
-      font-size: 1.2rem;
-      margin-bottom: 1rem;
-      background: #e0f7fa;
-      padding: 1rem;
-      border-radius: 0.5rem;
+      background: #283593;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      margin-bottom: 2rem;
+      color: #fff;
     }
     .sets h2 {
-      margin: 0 0 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .set-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 1.2rem;
+    }
+    #setCount {
+      font-weight: bold;
       font-size: 1.4rem;
-      color: #00796b;
+    }
+    .sets-count {
+      display: flex;
+      gap: 1rem;
+      font-family: 'Orbitron', sans-serif;
+    }
+    /* セットカウントラベル */
+    #labelA, #labelB {
+      font-weight: 700;
+      font-size: 1.2rem;
+    }
+
+    /* コントロールボタン */
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
     }
     .controls button {
+      background: linear-gradient(135deg, #00bcd4, #0097a7);
+      border: none;
+      border-radius: 0.75rem;
+      padding: 0.8rem 1.5rem;
       font-size: 1rem;
-      margin: 0.5rem;
-      padding: 0.5rem 1rem;
+      color: #fff;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
+    .controls button:hover {
+      background: linear-gradient(135deg, #0097a7, #006064);
+      transform: translateY(-2px);
+    }
+
+    /* 履歴セクション */
     .history {
-      margin-top: 1rem;
-      text-align: left;
-      background: #eaeaea;
-      padding: 1rem;
-      border-radius: 0.5rem;
+      background: #303030;
+      padding: 1.5rem;
+      border-radius: 1rem;
+      max-height: 200px;
+      overflow-y: auto;
+      font-size: 1rem;
+    }
+    .history strong {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #00bcd4;
+      font-size: 1.2rem;
+    }
+    #setHistory {
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+    #setHistory li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* レスポンシブ対応 */
+    @media(max-width: 768px){
+      .team-inputs {
+        flex-direction: column;
+      }
+      .scores {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+      }
+      .team {
+        text-align: center;
+      }
     }
   </style>
 </head>
 <body>
   <div class="scoreboard">
+    <!-- チーム名入力 -->
     <div class="team-inputs">
       <input type="text" id="inputTeamA" placeholder="チームAの名前" oninput="updateTeamName('A')">
       <input type="text" id="inputTeamB" placeholder="チームBの名前" oninput="updateTeamName('B')">
     </div>
+
+    <!-- チーム名表示 -->
     <div class="teams">
       <div class="team" id="teamAName">チームA</div>
       <div class="team" id="teamBName">チームB</div>
     </div>
+
+    <!-- スコア -->
     <div class="scores">
       <div id="scoreA">0</div>
       <div id="scoreB">0</div>
     </div>
+
+    <!-- セット情報 -->
     <div class="sets">
       <h2>セット情報</h2>
-      <div>現在のセット: <strong id="setCount">1</strong></div>
-      <div>
-        セットカウント: <strong id="labelA">チームA</strong> <span id="setsWonA">0</span> - <span id="setsWonB">0</span> <strong id="labelB">チームB</strong>
+      <div class="set-info">
+        <div>現在のセット: <strong id="setCount">1</strong></div>
+        <div class="sets-count">
+          <div><span id="labelA">チームA</span> <strong id="setsWonA">0</strong></div>
+          <div> - </div>
+          <div><strong id="setsWonB">0</strong> <span id="labelB">チームB</span></div>
+        </div>
       </div>
     </div>
+
+    <!-- 操作ボタン -->
     <div class="controls">
       <button onclick="addScore('A')">A +1</button>
       <button onclick="removeScore('A')">A -1</button>
@@ -95,13 +228,15 @@
       <button onclick="removeScore('B')">B -1</button><br>
       <button onclick="resetGame()">リセット</button>
     </div>
+
+    <!-- 履歴 -->
     <div class="history">
       <strong>セット結果履歴:</strong>
       <ul id="setHistory"></ul>
     </div>
   </div>
 
-  <script>
+   <script>
     let scoreA = 0;
     let scoreB = 0;
     let setCount = 1;
