@@ -62,26 +62,25 @@
       box-shadow: 0 0 8px #00bcd4;
     }
 
-    /* チーム名 */
-    .teams {
+    /* チーム名と得点表示 */
+    .scores-container {
       display: flex;
       justify-content: space-between; /* 横並びを維持 */
       margin-bottom: 2rem;
+    }
+    .team-info {
+      text-align: center;
     }
     .team {
       font-size: 1.4rem; /* フォントサイズを小さく */
       font-weight: bold;
       color: #00bcd4;
       text-shadow: 0 0 4px #00bcd4;
-      text-align: center; /* 中央揃えにする */
     }
-
-    /* スコア表示 */
     .scores {
       display: flex;
       justify-content: space-between; /* 横並びを維持 */
       font-size: 2.5rem; /* フォントサイズを小さく */
-      margin-bottom: 2rem;
     }
     #scoreA, #scoreB {
       padding: 1rem 2rem;
@@ -190,16 +189,16 @@
       <input type="text" id="inputTeamB" placeholder="チームBの名前" oninput="updateTeamName('B')">
     </div>
 
-    <!-- チーム名表示 -->
-    <div class="teams">
-      <div class="team" id="teamAName">チームA</div>
-      <div class="team" id="teamBName">チームB</div>
-    </div>
-
-    <!-- スコア -->
-    <div class="scores">
-      <div id="scoreA">0</div>
-      <div id="scoreB">0</div>
+    <!-- チーム名と得点表示 -->
+    <div class="scores-container">
+      <div class="team-info">
+        <div class="team" id="teamAName">チームA</div>
+        <div id="scoreA">0</div>
+      </div>
+      <div class="team-info">
+        <div class="team" id="teamBName">チームB</div>
+        <div id="scoreB">0</div>
+      </div>
     </div>
 
     <!-- セット情報 -->
